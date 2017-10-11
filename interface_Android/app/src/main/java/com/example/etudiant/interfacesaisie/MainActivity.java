@@ -3,7 +3,6 @@ package com.example.etudiant.interfacesaisie;
 import android.Manifest;
 import android.app.Activity;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
@@ -13,7 +12,6 @@ import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -29,7 +27,6 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 
 /**
  * Created by etudiant on 04/10/17.
@@ -59,6 +56,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
         ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.INTERNET},101);
     }
 
+	// Création des objets représentant la zone de dessin, la zone de texte et les boutons de sauvegarde et de remise à zéro
 	private void initializeUI() {
 		mDrawingView = (DrawingView) findViewById(R.id.scratch_pad);
 		mEdit = (EditText)findViewById(R.id.editText);
@@ -66,16 +64,21 @@ public class MainActivity extends Activity implements View.OnClickListener{
 		ResetButton = (Button) findViewById(R.id.reset_button);
 	}
 
+	// Création des événements d'écoute une action sur un bouton
 	private void setListeners() {
 		mSaveButton.setOnClickListener(this);
 		ResetButton.setOnClickListener(this);
 	}
 
+	// Que faire si on appuie sur un bouton
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+		// appuie sur le bouton de sauvegarde
         case R.id.save_button:
+			// si la zone de texte est vide
 			if(mEdit.getText().toString().matches("")) {
+				// alors message d'erreur et focus sur la zone de texte
 				Toast.makeText(this, R.string.name_field_empty, Toast.LENGTH_SHORT).show();
 				mEdit.requestFocus();
 			} else {
@@ -100,8 +103,9 @@ public class MainActivity extends Activity implements View.OnClickListener{
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
-			break;
+		break;
 
+		// appuie sur le bouton de remise à zéro
 		case R.id.reset_button:
 			reset();
 		break;
@@ -109,14 +113,14 @@ public class MainActivity extends Activity implements View.OnClickListener{
     }
 
 
-//Envoi de l'image vers le serveur : Transformation de la DrawView en Bitmap puis en String pour l'envoi avec un Json
+	// Envoi de l'image vers le serveur : Transformation de la DrawView en Bitmap puis en String pour l'envoi avec un Json
     public void envoiImage(View view) throws JSONException {
 		final EditText mTxtDisplay = (EditText) findViewById(R.id.editText);
 		String url = "http://tf.boblecodeur.fr:8000/postimg";
 		JSONObject myJson = new JSONObject();
 
 
-		//Creation d'un String à partir du bitmap pour le preparer à l'envoi
+		// Creation d'un String à partir du bitmap pour le preparer à l'envoi
 		Bitmap bitmapEnvoi = mDrawingView.getBitmap();
 		final int COMPRESSION_QUALITY = 100;
 		String encodedImage;
@@ -128,7 +132,6 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
 		myJson.put("img","test");
 		myJson.put("label","test");
-
 
 
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
@@ -148,11 +151,12 @@ public class MainActivity extends Activity implements View.OnClickListener{
 				});
 
 
-// Access the RequestQueue through your singleton class.
+		// Access the RequestQueue through your singleton class.
 		MySingleton.getInstance(this).addToRequestQueue(jsObjRequest);
 
 	}
 
+	// Remplace le Canva, son Bitmap et vide la zone de texte
 	public void reset() {
 		mDrawingView.reset();
 		mEdit.setText("");
