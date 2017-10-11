@@ -22,7 +22,8 @@
 		android:inputType="textPersonName"
 		android:maxLines="1"
 		android:text="@string/name_field"
-		android:textAlignment="center"/>
+		android:textAlignment="center"
+		tools:ignore="LabelFor"/>
 
 	<LinearLayout
         android:id="@+id/buttons"
