@@ -34,7 +34,7 @@ import java.io.File;
 
 public class MainActivity extends Activity implements View.OnClickListener{
 	private String path=Environment.getExternalStorageDirectory().toString()+File.separator.toString()+"interface_android";
-	private File folder;
+	//private File folder;
 
 	private EditText mEdit;
 	private Button mSaveButton;
@@ -50,10 +50,10 @@ public class MainActivity extends Activity implements View.OnClickListener{
 		initializeUI();
 		setListeners();
 
-		folder = new File(path);
+		//folder = new File(path);
 
 
-        ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.INTERNET},101);
+        ActivityCompat.requestPermissions(this,new String[]{/*Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE,*/Manifest.permission.INTERNET},101);
     }
 
 	// Création des objets représentant la zone de dessin, la zone de texte et les boutons de sauvegarde et de remise à zéro
@@ -82,26 +82,26 @@ public class MainActivity extends Activity implements View.OnClickListener{
 				Toast.makeText(this, R.string.name_field_empty, Toast.LENGTH_SHORT).show();
 				mEdit.requestFocus();
 			} else {
-				boolean success = true;
-				if (!folder.exists()) {
-					success = folder.mkdirs();
-				}
-				if (success) {
-					try {
-						mDrawingView.saveImage(path, mEdit.getText().toString(), Bitmap.CompressFormat.PNG, 100);
+				//boolean success = true;
+				//if (!folder.exists()) {
+					//success = folder.mkdirs();
+				//}
+				//if (success) {
+					//try {
+						//mDrawingView.saveImage(path, mEdit.getText().toString(), Bitmap.CompressFormat.PNG, 100);
 						//Toast.makeText(this, this.getResources().getString(R.string.save_success_1) + mEdit.getText().toString() + this.getResources().getString(R.string.save_success_2) + path, Toast.LENGTH_LONG).show();
-					} catch (Exception e) {
-						Toast.makeText(this, this.getResources().getString(R.string.error_file) + mEdit.getText().toString() + this.getResources().getString(R.string.save_success_2)+ path + " !", Toast.LENGTH_LONG).show();
-					}
-				} else {
-					Toast.makeText(this, this.getResources().getString(R.string.error_folder) + path + " !", Toast.LENGTH_LONG).show();
-				}
-			}
+					//} catch (Exception e) {
+						//Toast.makeText(this, this.getResources().getString(R.string.error_file) + mEdit.getText().toString() + this.getResources().getString(R.string.save_success_2)+ path + " !", Toast.LENGTH_LONG).show();
+					//}
+				//} else {
+					//Toast.makeText(this, this.getResources().getString(R.string.error_folder) + path + " !", Toast.LENGTH_LONG).show();
+				//}
 
-			try {
-				envoiImage(view);
-			} catch (JSONException e) {
-				e.printStackTrace();
+				try {
+					envoiImage(view);
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
 			}
 		break;
 
@@ -111,7 +111,6 @@ public class MainActivity extends Activity implements View.OnClickListener{
 		break;
         }
     }
-
 
 	// Envoi de l'image vers le serveur : Transformation de la DrawView en Bitmap puis en String pour l'envoi avec un Json
     public void envoiImage(View view) throws JSONException {
