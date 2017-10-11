@@ -33,7 +33,7 @@ import java.io.File;
  */
 
 public class MainActivity extends Activity implements View.OnClickListener{
-	private String path=Environment.getExternalStorageDirectory().toString()+File.separator.toString()+"interface_android";
+	//private String path=Environment.getExternalStorageDirectory().toString()+File.separator.toString()+"interface_android";
 	//private File folder;
 
 	private EditText mEdit;
