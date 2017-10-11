@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Interface saisie</string>
+	<string name="name_field">test</string>
+	<string name="save_button">Sauvegarder l\'image</string>
+	<string name="reset_button">Effacer l\'image</string>
+
+	<string name="save_success_1">"Image sauvegardé sous le nom de "</string>
+	<string name="save_success_2">".png dans "</string>
+
+	<string name="name_field_empty">Vous devez saisir un nom !</string>
+	<string name="error_folder">"Erreur de création du dossier "</string>
+	<string name="error_file">"Erreur de création de l'image "</string>
+</resources>
