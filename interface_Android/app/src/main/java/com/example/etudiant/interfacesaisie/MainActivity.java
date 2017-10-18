@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -112,47 +113,48 @@ public class MainActivity extends Activity implements View.OnClickListener{
         }
     }
 
-	// Envoi de l'image vers le serveur : Transformation de la DrawView en Bitmap puis en String pour l'envoi avec un Json
-    public void envoiImage(View view) throws JSONException {
+	//Envoi de l'image vers le serveur : Transformation de la DrawView en Bitmap puis en String pour l'envoi avec un Json
+	public void envoiImage(View view) throws JSONException {
 		final EditText mTxtDisplay = (EditText) findViewById(R.id.editText);
 		String url = "http://tf.boblecodeur.fr:8000/postimg";
 		JSONObject myJson = new JSONObject();
 
-
-		// Creation d'un String à partir du bitmap pour le preparer à l'envoi
+		//Creation d'un String à partir du bitmap pour le preparer à l'envoi
 		Bitmap bitmapEnvoi = mDrawingView.getBitmap();
 		final int COMPRESSION_QUALITY = 100;
 		String encodedImage;
 		ByteArrayOutputStream byteArrayBitmapStream = new ByteArrayOutputStream();
-		bitmapEnvoi.compress(Bitmap.CompressFormat.PNG, COMPRESSION_QUALITY,byteArrayBitmapStream);
+		bitmapEnvoi.compress(Bitmap.CompressFormat.PNG, COMPRESSION_QUALITY, byteArrayBitmapStream);
 		byte[] b = byteArrayBitmapStream.toByteArray();
 		encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
 
 
-		myJson.put("img","test");
-		myJson.put("label","test");
+		myJson.put("img", encodedImage);
+		myJson.put("label", mTxtDisplay.getText().toString());
 
 
-        JsonObjectRequest jsObjRequest = new JsonObjectRequest
+		JsonObjectRequest jsObjRequest = new JsonObjectRequest
 				(Request.Method.POST, url, myJson, new Response.Listener<JSONObject>() {
+
 
 					@Override
 					public void onResponse(JSONObject response) {
-						mTxtDisplay.setText("Response: " + response.toString());
+						try {
+							mTxtDisplay.setText("Response: " + response.getString("retour"));
+
+						} catch (JSONException e) {
+							e.printStackTrace();
+						}
 					}
 				}, new Response.ErrorListener() {
 
 					@Override
 					public void onErrorResponse(VolleyError error) {
+						error.printStackTrace();
 						mTxtDisplay.setText("Error: " + error.toString());
 
 					}
 				});
-
-
-		// Access the RequestQueue through your singleton class.
-		MySingleton.getInstance(this).addToRequestQueue(jsObjRequest);
-
 	}
 
 	// Remplace le Canva, son Bitmap et vide la zone de texte
