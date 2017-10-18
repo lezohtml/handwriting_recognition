@@ -131,7 +131,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
 		myJson.put("img", encodedImage);
 		myJson.put("label", mTxtDisplay.getText().toString());
-
+        Toast.makeText(getApplicationContext(), mTxtDisplay.getText().toString(), Toast.LENGTH_SHORT).show();
 
 		JsonObjectRequest jsObjRequest = new JsonObjectRequest
 				(Request.Method.POST, url, myJson, new Response.Listener<JSONObject>() {
@@ -140,11 +140,15 @@ public class MainActivity extends Activity implements View.OnClickListener{
 					@Override
 					public void onResponse(JSONObject response) {
 						try {
-							mTxtDisplay.setText("Response: " + response.getString("retour"));
+							mTxtDisplay.setText("Response: " + response.getString("return"));
+                            Toast.makeText(getApplicationContext(), "yo", Toast.LENGTH_SHORT).show();
 
-						} catch (JSONException e) {
+
+                        } catch (JSONException e) {
 							e.printStackTrace();
-						}
+                            mTxtDisplay.setText("Error: " + e.toString());
+
+                        }
 					}
 				}, new Response.ErrorListener() {
 
@@ -152,9 +156,14 @@ public class MainActivity extends Activity implements View.OnClickListener{
 					public void onErrorResponse(VolleyError error) {
 						error.printStackTrace();
 						mTxtDisplay.setText("Error: " + error.toString());
+                        Toast.makeText(getApplicationContext(), "no", Toast.LENGTH_SHORT).show();
 
-					}
+
+                    }
 				});
+
+// Access the RequestQueue through your singleton class.
+        MySingleton.getInstance(this).addToRequestQueue(jsObjRequest);
 	}
 
 	// Remplace le Canva, son Bitmap et vide la zone de texte
