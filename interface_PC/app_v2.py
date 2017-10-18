@@ -1,10 +1,11 @@
 #-*- coding: utf-8 -*-
 import tkinter as tk
-from tkinter import Entry, Label,END
+from tkinter import Entry, Label,END, Toplevel
 from PIL import Image,ImageDraw
 import time
 import base64
 from io import BytesIO
+import json
 from urllib import request, parse
 
 class ImageGenerator:
@@ -20,19 +21,25 @@ class ImageGenerator:
         self.yold = None
         self.coords= [[],[]]
         self.index_coords=0
+
         self.drawing_area=tk.Canvas(self.parent,width=self.sizex,height=self.sizey)
         self.drawing_area.pack(fill="x",side="top",pady=10, padx=10)
         self.drawing_area.bind("<Motion>", self.motion)
         self.drawing_area.bind("<ButtonPress-1>", self.b1down)
         self.drawing_area.bind("<ButtonRelease-1>", self.b1up)
+
         self.button_save=tk.Button(self.parent,text="Enregistrer",width=10,bg='white',command=self.save)
         self.button_save.pack(fill="x",side="right", padx=10)
+
         self.button_clear=tk.Button(self.parent,text="Effacer",width=10,bg='white',command=self.clear)
         self.button_clear.pack(fill="x", side="right", padx=10)
+
         self.label_champ_signification = Label(root,text="Entrer la signification du dessin :")
         self.label_champ_signification.pack(side="left",fill="x", padx=10)
+
         self.champ_signification = Entry(root)
         self.champ_signification.pack(side="left",fill="x", padx=10)
+
         self.image=Image.new("RGB",(self.sizex,self.sizey),(255,255,255))
         self.draw=ImageDraw.Draw(self.image)
 
@@ -48,22 +55,25 @@ class ImageGenerator:
                 self.draw.line(self.coords[i],(0,0,0),width=3)
             self.filename = str(int(time.time()))+"_"+self.champ_signification.get()+".png"
             imageFile = BytesIO()
-            #with self.image.save(fp=output,format="PNG") as imageFile:
-       #     with open("images/" + self.filename, "rb") as imageFile:
             self.image.save(fp=imageFile, format="PNG")
             img = base64.b64encode(imageFile.getvalue())
-            content = {"img": img, "label": self.filename}
-            data = parse.urlencode(content).encode()
-            req = request.Request('http://tf.boblecodeur.fr:8000/postimg', data=data)  # send data to the server
-            # get and read the answer
-            resp = request.urlopen(req)
-            result = resp.read()
-            print (result)
+            try:
+                content ={"img": img.decode("utf-8"), "label": self.filename}
+                json_data = json.dumps(content).encode('utf8')
+                resp = request.Request('http://tf.boblecodeur.fr:8000/postimg', data=json_data,
+                                                 headers={'Content-Type': 'application/json'})
+                response = json.loads(request.urlopen(resp).read().decode("utf-8"))
 
+            except Exception as e:
+
+                result = {"return": e}
+
+            top = Toplevel()
+            message = Label(top, text="la réponse du serveur est : "+response["return"], padx=10, pady=10)
+            message.pack()
+            buttonClose = tk.Button(top, text='ok', command=top.destroy)
+            buttonClose.pack()
             self.clear()
-
-
-
 
 
     def clear(self):
