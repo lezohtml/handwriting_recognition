@@ -3,15 +3,18 @@ package com.example.etudiant.interfacesaisie;
 import android.Manifest;
 import android.app.Activity;
 import android.graphics.Bitmap;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -37,6 +40,9 @@ public class MainActivity extends Activity implements View.OnClickListener{
 	//private File folder;
 
 	private EditText mEdit;
+	private Button choice_1;
+	private Button choice_2;
+	private Button choice_3;
 	private Button mSaveButton;
 	private Button ResetButton;
 
@@ -59,13 +65,23 @@ public class MainActivity extends Activity implements View.OnClickListener{
 	// Création des objets représentant la zone de dessin, la zone de texte et les boutons de sauvegarde et de remise à zéro
 	private void initializeUI() {
 		mDrawingView = (DrawingView) findViewById(R.id.scratch_pad);
+		choice_1 = (Button) findViewById(R.id.choice_1);
+		choice_2 = (Button) findViewById(R.id.choice_2);
+		choice_3 = (Button) findViewById(R.id.choice_3);
 		mEdit = (EditText)findViewById(R.id.editText);
 		mSaveButton = (Button) findViewById(R.id.save_button);
 		ResetButton = (Button) findViewById(R.id.reset_button);
+
+		choice_1.setPaintFlags(choice_1.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+		choice_2.setPaintFlags(choice_2.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+		choice_3.setPaintFlags(choice_3.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 	}
 
 	// Création des événements d'écoute une action sur un bouton
 	private void setListeners() {
+		choice_1.setOnClickListener(this);
+		choice_2.setOnClickListener(this);
+		choice_3.setOnClickListener(this);
 		mSaveButton.setOnClickListener(this);
 		ResetButton.setOnClickListener(this);
 	}
@@ -74,90 +90,122 @@ public class MainActivity extends Activity implements View.OnClickListener{
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-		// appuie sur le bouton de sauvegarde
-        case R.id.save_button:
-			// si la zone de texte est vide
-			if(mEdit.getText().toString().matches("")) {
-				// alors message d'erreur et focus sur la zone de texte
-				Toast.makeText(this, R.string.name_field_empty, Toast.LENGTH_SHORT).show();
-				mEdit.requestFocus();
-			} else {
-				//boolean success = true;
-				//if (!folder.exists()) {
-					//success = folder.mkdirs();
-				//}
-				//if (success) {
-					//try {
-						//mDrawingView.saveImage(path, mEdit.getText().toString(), Bitmap.CompressFormat.PNG, 100);
-						//Toast.makeText(this, this.getResources().getString(R.string.save_success_1) + mEdit.getText().toString() + this.getResources().getString(R.string.save_success_2) + path, Toast.LENGTH_LONG).show();
-					//} catch (Exception e) {
-						//Toast.makeText(this, this.getResources().getString(R.string.error_file) + mEdit.getText().toString() + this.getResources().getString(R.string.save_success_2)+ path + " !", Toast.LENGTH_LONG).show();
+			// appuie sur le bouton de proposition 1
+			case R.id.choice_1:
+				 Toast.makeText(this, "choix 1", Toast.LENGTH_LONG).show();
+			break;
+
+			// appuie sur le bouton de proposition 2
+			case R.id.choice_2:
+				Toast.makeText(this, "choix 2", Toast.LENGTH_LONG).show();
+			break;
+
+			// appuie sur le bouton de proposition 3
+			case R.id.choice_3:
+				Toast.makeText(this, "choix 3", Toast.LENGTH_LONG).show();
+			break;
+
+			// appuie sur le bouton de sauvegarde
+			case R.id.save_button:
+				// si la zone de texte est vide
+				if(mEdit.getText().toString().matches("")) {
+					// alors message d'erreur et focus sur la zone de texte
+					Toast.makeText(this, R.string.name_field_empty, Toast.LENGTH_SHORT).show();
+					mEdit.requestFocus();
+				} else {
+					//boolean success = true;
+					//if (!folder.exists()) {
+						//success = folder.mkdirs();
 					//}
-				//} else {
-					//Toast.makeText(this, this.getResources().getString(R.string.error_folder) + path + " !", Toast.LENGTH_LONG).show();
-				//}
+					//if (success) {
+						//try {
+							//mDrawingView.saveImage(path, mEdit.getText().toString(), Bitmap.CompressFormat.PNG, 100);
+							//Toast.makeText(this, this.getResources().getString(R.string.save_success_1) + mEdit.getText().toString() + this.getResources().getString(R.string.save_success_2) + path, Toast.LENGTH_LONG).show();
+						//} catch (Exception e) {
+							//Toast.makeText(this, this.getResources().getString(R.string.error_file) + mEdit.getText().toString() + this.getResources().getString(R.string.save_success_2)+ path + " !", Toast.LENGTH_LONG).show();
+						//}
+					//} else {
+						//Toast.makeText(this, this.getResources().getString(R.string.error_folder) + path + " !", Toast.LENGTH_LONG).show();
+					//}
 
-				try {
-					envoiImage(view);
-				} catch (JSONException e) {
-					e.printStackTrace();
+					try {
+						envoiImage(view);
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
 				}
-			}
-		break;
+			break;
 
-		// appuie sur le bouton de remise à zéro
-		case R.id.reset_button:
-			reset();
-		break;
+			// appuie sur le bouton de remise à zéro
+			case R.id.reset_button:
+				reset();
+			break;
         }
     }
 
-	// Envoi de l'image vers le serveur : Transformation de la DrawView en Bitmap puis en String pour l'envoi avec un Json
-    public void envoiImage(View view) throws JSONException {
+	//Envoi de l'image vers le serveur : Transformation de la DrawView en Bitmap puis en String pour l'envoi avec un Json
+	public void envoiImage(View view) throws JSONException {
 		final EditText mTxtDisplay = (EditText) findViewById(R.id.editText);
 		String url = "http://tf.boblecodeur.fr:8000/postimg";
 		JSONObject myJson = new JSONObject();
 
-
-		// Creation d'un String à partir du bitmap pour le preparer à l'envoi
+		//Creation d'un String à partir du bitmap pour le preparer à l'envoi
 		Bitmap bitmapEnvoi = mDrawingView.getBitmap();
 		final int COMPRESSION_QUALITY = 100;
 		String encodedImage;
 		ByteArrayOutputStream byteArrayBitmapStream = new ByteArrayOutputStream();
-		bitmapEnvoi.compress(Bitmap.CompressFormat.PNG, COMPRESSION_QUALITY,byteArrayBitmapStream);
+		bitmapEnvoi.compress(Bitmap.CompressFormat.PNG, COMPRESSION_QUALITY, byteArrayBitmapStream);
 		byte[] b = byteArrayBitmapStream.toByteArray();
 		encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
 
 
-		myJson.put("img","test");
-		myJson.put("label","test");
+		myJson.put("img", encodedImage);
+		myJson.put("label", mTxtDisplay.getText().toString());
+        Toast.makeText(getApplicationContext(), mTxtDisplay.getText().toString(), Toast.LENGTH_SHORT).show();
 
-
-        JsonObjectRequest jsObjRequest = new JsonObjectRequest
+		JsonObjectRequest jsObjRequest = new JsonObjectRequest
 				(Request.Method.POST, url, myJson, new Response.Listener<JSONObject>() {
 
 					@Override
 					public void onResponse(JSONObject response) {
-						mTxtDisplay.setText("Response: " + response.toString());
+						try {
+							mTxtDisplay.setText("Response: " + response.getString("return"));
+                            Toast.makeText(getApplicationContext(), "yo", Toast.LENGTH_SHORT).show();
+
+
+                        } catch (JSONException e) {
+							e.printStackTrace();
+                            mTxtDisplay.setText("Error: " + e.toString());
+
+                        }
 					}
 				}, new Response.ErrorListener() {
 
 					@Override
 					public void onErrorResponse(VolleyError error) {
+						error.printStackTrace();
 						mTxtDisplay.setText("Error: " + error.toString());
+                        Toast.makeText(getApplicationContext(), "no", Toast.LENGTH_SHORT).show();
 
-					}
+
+                    }
 				});
 
-
 		// Access the RequestQueue through your singleton class.
-		MySingleton.getInstance(this).addToRequestQueue(jsObjRequest);
-
+        MySingleton.getInstance(this).addToRequestQueue(jsObjRequest);
 	}
 
 	// Remplace le Canva, son Bitmap et vide la zone de texte
 	public void reset() {
 		mDrawingView.reset();
+		hide_choice_button();
 		mEdit.setText("");
+	}
+
+	// Cache les boutons de proposition de mots
+	public void hide_choice_button() {
+		choice_1.setVisibility(Button.INVISIBLE);
+		choice_2.setVisibility(Button.INVISIBLE);
+		choice_3.setVisibility(Button.INVISIBLE);
 	}
 }
