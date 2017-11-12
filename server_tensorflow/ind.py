@@ -1,31 +1,19 @@
 import json
 from bottle import post, request
+import base64, PIL
 
 
-class App() :
-
+class App():
     @post('/postimg')
     def postImg():
-        #monjson = json.load(jsonn)
-        img = request.forms.get('img')
-        label = request.forms.get('label')
-        #img = monjson["img"]
-        #label = monjson["label"]
-        #envoi des infos à tensorflow
-        if img and label :
-            retour = "IMG : OK \n LABEL : OK"
-        elif img :
-            retour = "IMG : OK"
-        elif label :
-            retour = label + " OK"
-        else :
-            retour = "ERROR"
+        monjson = request.json  #get json object
+        img = monjson['img']  #read data from json relative to the image
+        label = monjson['label']  #read the label
+        imgdecode = base64.b64decode(img) #decode image base64 format
+        imgname = 'images/' + label + ".png"  #name the picture file with the label and the .png file extension
+        with open(imgname, "wb") as fh:  #write the picture data in the picture file
+            fh.write(imgdecode)
 
-         #info retournées par tensorflow
-        f = open('log.txt', 'a')
-        f.write(str(label) + '\n')  # python will convert \n to os.linesep
-        f.close()
+        retour = {"return": "Ok"} #return json message
+
         return retour
-
-
-
