@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/home/etudiant/StudioProjects/handwriting_recognition/interface_Android/app/build/intermediates/res/merged/debug/layout-v21/notification_template_icon_group.xml",
+        "source": "/home/etudiant/.android/build-cache/fa652a865a0fec7475c7c365cda1449cfeeb8b24/output/res/layout-v21/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "/home/etudiant/StudioProjects/handwriting_recognition/interface_Android/app/build/intermediates/res/merged/debug/layout-v21/notification_template_custom_big.xml",
+        "source": "/home/etudiant/.android/build-cache/fa652a865a0fec7475c7c365cda1449cfeeb8b24/output/res/layout-v21/notification_template_custom_big.xml"
+    },
+    {
+        "merged": "/home/etudiant/StudioProjects/handwriting_recognition/interface_Android/app/build/intermediates/res/merged/debug/layout-v21/notification_action_tombstone.xml",
+        "source": "/home/etudiant/.android/build-cache/fa652a865a0fec7475c7c365cda1449cfeeb8b24/output/res/layout-v21/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "/home/etudiant/StudioProjects/handwriting_recognition/interface_Android/app/build/intermediates/res/merged/debug/layout-v21/notification_action.xml",
+        "source": "/home/etudiant/.android/build-cache/fa652a865a0fec7475c7c365cda1449cfeeb8b24/output/res/layout-v21/notification_action.xml"
+    }
+]

@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/home/etudiant/StudioProjects/handwriting_recognition/interface_Android/app/build/intermediates/res/merged/debug/mipmap-xxhdpi/ic_launcher_round.png",
+        "source": "/home/etudiant/StudioProjects/handwriting_recognition/interface_Android/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/home/etudiant/StudioProjects/handwriting_recognition/interface_Android/app/build/intermediates/res/merged/debug/mipmap-xxhdpi/ic_launcher.png",
+        "source": "/home/etudiant/StudioProjects/handwriting_recognition/interface_Android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png"
+    }
+]

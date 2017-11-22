@@ -1,0 +1,7 @@
+#Mon Oct 23 08:24:42 CEST 2017
+base.0=/home/etudiant/StudioProjects/handwriting_recognition/interface_Android/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_c530acaab9a430f1d5cafefad3000a52ff51bad1
+renamed.1=classes.dex
+renamed.0=classes2.dex
+file.1=/home/etudiant/StudioProjects/handwriting_recognition/interface_Android/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_efa1b97207d1abd7865438b1adb4ef24027b2c39/classes.dex
+base.1=/home/etudiant/StudioProjects/handwriting_recognition/interface_Android/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_efa1b97207d1abd7865438b1adb4ef24027b2c39
+file.0=/home/etudiant/StudioProjects/handwriting_recognition/interface_Android/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_c530acaab9a430f1d5cafefad3000a52ff51bad1/classes.dex

@@ -1,0 +1,42 @@
+[
+    {
+        "merged": "/home/etudiant/StudioProjects/handwriting_recognition/interface_Android/app/build/intermediates/res/merged/debug/color-v23/abc_tint_edittext.xml",
+        "source": "/home/etudiant/.android/build-cache/fa652a865a0fec7475c7c365cda1449cfeeb8b24/output/res/color-v23/abc_tint_edittext.xml"
+    },
+    {
+        "merged": "/home/etudiant/StudioProjects/handwriting_recognition/interface_Android/app/build/intermediates/res/merged/debug/color-v23/abc_tint_default.xml",
+        "source": "/home/etudiant/.android/build-cache/fa652a865a0fec7475c7c365cda1449cfeeb8b24/output/res/color-v23/abc_tint_default.xml"
+    },
+    {
+        "merged": "/home/etudiant/StudioProjects/handwriting_recognition/interface_Android/app/build/intermediates/res/merged/debug/color-v23/abc_btn_colored_text_material.xml",
+        "source": "/home/etudiant/.android/build-cache/fa652a865a0fec7475c7c365cda1449cfeeb8b24/output/res/color-v23/abc_btn_colored_text_material.xml"
+    },
+    {
+        "merged": "/home/etudiant/StudioProjects/handwriting_recognition/interface_Android/app/build/intermediates/res/merged/debug/color-v23/abc_tint_btn_checkable.xml",
+        "source": "/home/etudiant/.android/build-cache/fa652a865a0fec7475c7c365cda1449cfeeb8b24/output/res/color-v23/abc_tint_btn_checkable.xml"
+    },
+    {
+        "merged": "/home/etudiant/StudioProjects/handwriting_recognition/interface_Android/app/build/intermediates/res/merged/debug/color-v23/abc_tint_spinner.xml",
+        "source": "/home/etudiant/.android/build-cache/fa652a865a0fec7475c7c365cda1449cfeeb8b24/output/res/color-v23/abc_tint_spinner.xml"
+    },
+    {
+        "merged": "/home/etudiant/StudioProjects/handwriting_recognition/interface_Android/app/build/intermediates/res/merged/debug/color-v23/abc_tint_seek_thumb.xml",
+        "source": "/home/etudiant/.android/build-cache/fa652a865a0fec7475c7c365cda1449cfeeb8b24/output/res/color-v23/abc_tint_seek_thumb.xml"
+    },
+    {
+        "merged": "/home/etudiant/StudioProjects/handwriting_recognition/interface_Android/app/build/intermediates/res/merged/debug/color-v23/abc_tint_switch_thumb.xml",
+        "source": "/home/etudiant/.android/build-cache/fa652a865a0fec7475c7c365cda1449cfeeb8b24/output/res/color-v23/abc_tint_switch_thumb.xml"
+    },
+    {
+        "merged": "/home/etudiant/StudioProjects/handwriting_recognition/interface_Android/app/build/intermediates/res/merged/debug/color-v23/abc_tint_switch_track.xml",
+        "source": "/home/etudiant/.android/build-cache/fa652a865a0fec7475c7c365cda1449cfeeb8b24/output/res/color-v23/abc_tint_switch_track.xml"
+    },
+    {
+        "merged": "/home/etudiant/StudioProjects/handwriting_recognition/interface_Android/app/build/intermediates/res/merged/debug/color-v23/abc_btn_colored_borderless_text_material.xml",
+        "source": "/home/etudiant/.android/build-cache/fa652a865a0fec7475c7c365cda1449cfeeb8b24/output/res/color-v23/abc_btn_colored_borderless_text_material.xml"
+    },
+    {
+        "merged": "/home/etudiant/StudioProjects/handwriting_recognition/interface_Android/app/build/intermediates/res/merged/debug/color-v23/abc_color_highlight_material.xml",
+        "source": "/home/etudiant/.android/build-cache/fa652a865a0fec7475c7c365cda1449cfeeb8b24/output/res/color-v23/abc_color_highlight_material.xml"
+    }
+]
