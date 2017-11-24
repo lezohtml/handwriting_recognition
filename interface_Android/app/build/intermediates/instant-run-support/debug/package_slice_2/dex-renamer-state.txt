@@ -1,4 +1,4 @@
-#Wed Oct 18 15:25:22 CEST 2017
-base.0=/home/etudiant/StudioProjects/handwriting_recognition/interface_Android/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_2
+#Fri Nov 24 11:44:40 CET 2017
+base.0=/home/etudiant/AndroidStudioProjects/projetM1M2/handwriting_recognition/interface_Android/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_2
 renamed.0=classes.dex
-file.0=/home/etudiant/StudioProjects/handwriting_recognition/interface_Android/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_2/classes.dex
+file.0=/home/etudiant/AndroidStudioProjects/projetM1M2/handwriting_recognition/interface_Android/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_2/classes.dex

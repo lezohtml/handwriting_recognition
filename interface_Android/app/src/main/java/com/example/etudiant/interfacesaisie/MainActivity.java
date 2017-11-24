@@ -178,11 +178,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 					public void onResponse(JSONObject response) {
 						try {
 							mTxtDisplay.setText("Response: " + response.getString("return"));
-							choice_1.setVisibility(View.VISIBLE);
-							choice_2.setVisibility(View.VISIBLE);
-							choice_3.setVisibility(View.VISIBLE);
-
-							Toast.makeText(getApplicationContext(), "yo", Toast.LENGTH_SHORT).show();
+							show_choice_button();
 
 
                         } catch (JSONException e) {
@@ -197,7 +193,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 					public void onErrorResponse(VolleyError error) {
 						error.printStackTrace();
 						mTxtDisplay.setText("Error: " + error.toString());
-                        Toast.makeText(getApplicationContext(), "no", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Erreur dans l'envoi", Toast.LENGTH_SHORT).show();
 
 
                     }
@@ -214,11 +210,31 @@ public class MainActivity extends Activity implements View.OnClickListener{
 		mEdit.setText("");
 	}
 
-	// Cache les boutons de proposition de mots
+	// Lorsque le l'utilisateur clique sur l'envoi: Cache les boutons de proposition de mots et change les labels
 	public void hide_choice_button() {
 		choice_1.setVisibility(Button.GONE);
 		choice_2.setVisibility(Button.GONE);
 		choice_3.setVisibility(Button.GONE);
-	//	findViewById(R.id.mainLayout).invalidate();
+		mEdit.setVisibility(EditText.VISIBLE);
+		Button saveButton = (Button) findViewById(R.id.save_button);
+		saveButton.setVisibility(EditText.VISIBLE);
+		Button myButton = (Button) findViewById(R.id.reset_button);
+		myButton.setText("Effacer le mot");
+		mDrawingView.showmPaint();
+		//reset();
+		//	findViewById(R.id.mainLayout).invalidate();
+	}
+
+	// Inverse hide_choice : Affiche tout les boutons pour le choix et change les labels pour correspondra à létat de l'application
+	public void show_choice_button() {
+		choice_1.setVisibility(Button.VISIBLE);
+		choice_2.setVisibility(Button.VISIBLE);
+		choice_3.setVisibility(Button.VISIBLE);
+		mEdit.setVisibility(EditText.GONE);
+		Button saveButton = (Button) findViewById(R.id.save_button);
+		saveButton.setVisibility(EditText.GONE);
+		Button resetButton = (Button) findViewById(R.id.reset_button);
+		resetButton.setText("Annuler le choix");
+		mDrawingView.hidemPaint();
 	}
 }

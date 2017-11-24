@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FFA65D</color>
-    <color name="colorPrimaryDark">#C85B00</color>
+    <color name="colorPrimary">#F3A200</color>
+    <color name="colorPrimaryDark">#F3A200</color>
     <color name="colorAccent">#103FAB</color>
-    <color name="colorEdit">#54ffa65d</color>
-    <color name="colorButtonBottom">#54ffa65d</color>
-    <color name="colorChoix">#9ad4782c</color>
+    <color name="colorEdit">#ffCACA</color>
+    <color name="colorButtonBottom">#cff3a200</color>
+    <color name="colorChoix">#00CACA</color>
     <color name="colorChoixBorder">#9ad4782c</color>
+    <color name="pad_border">#F3A200</color>
 
 </resources>
