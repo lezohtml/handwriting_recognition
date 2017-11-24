@@ -27,9 +27,13 @@
     <color name="bright_foreground_material_light">@android:color/black</color>
     <color name="button_material_dark">#ff5a595b</color>
     <color name="button_material_light">#ffd6d7d7</color>
-    <color name="colorAccent">#FF4081</color>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#103FAB</color>
+    <color name="colorButtonBottom">#54ffa65d</color>
+    <color name="colorChoix">#9ad4782c</color>
+    <color name="colorChoixBorder">#9ad4782c</color>
+    <color name="colorEdit">#54ffa65d</color>
+    <color name="colorPrimary">#FFA65D</color>
+    <color name="colorPrimaryDark">#C85B00</color>
     <color name="dim_foreground_disabled_material_dark">#80bebebe</color>
     <color name="dim_foreground_disabled_material_light">#80323232</color>
     <color name="dim_foreground_material_dark">#ffbebebe</color>

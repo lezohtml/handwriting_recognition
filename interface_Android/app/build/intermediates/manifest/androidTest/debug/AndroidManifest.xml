@@ -13,7 +13,7 @@
         android:label="Tests for com.example.etudiant.interfacesaisie"
         android:targetPackage="com.example.etudiant.interfacesaisie" />
 
-    <application android:debuggable="true" >
+    <application>
         <uses-library android:name="android.test.runner" />
     </application>
 

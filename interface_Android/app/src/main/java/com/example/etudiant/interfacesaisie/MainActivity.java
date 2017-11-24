@@ -73,8 +73,13 @@ public class MainActivity extends Activity implements View.OnClickListener{
 		ResetButton = (Button) findViewById(R.id.reset_button);
 
 		choice_1.setPaintFlags(choice_1.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+		choice_1.setVisibility(View.GONE);
 		choice_2.setPaintFlags(choice_2.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+		choice_2.setVisibility(View.GONE);
 		choice_3.setPaintFlags(choice_3.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+		choice_3.setVisibility(View.GONE);
+
+
 	}
 
 	// Création des événements d'écoute une action sur un bouton
@@ -93,17 +98,20 @@ public class MainActivity extends Activity implements View.OnClickListener{
 			// appuie sur le bouton de proposition 1
 			case R.id.choice_1:
 				 Toast.makeText(this, "choix 1", Toast.LENGTH_LONG).show();
+				this.hide_choice_button();
 			break;
 
 			// appuie sur le bouton de proposition 2
 			case R.id.choice_2:
 				Toast.makeText(this, "choix 2", Toast.LENGTH_LONG).show();
-			break;
+				this.hide_choice_button();
+				break;
 
 			// appuie sur le bouton de proposition 3
 			case R.id.choice_3:
 				Toast.makeText(this, "choix 3", Toast.LENGTH_LONG).show();
-			break;
+				this.hide_choice_button();
+				break;
 
 			// appuie sur le bouton de sauvegarde
 			case R.id.save_button:
@@ -170,7 +178,11 @@ public class MainActivity extends Activity implements View.OnClickListener{
 					public void onResponse(JSONObject response) {
 						try {
 							mTxtDisplay.setText("Response: " + response.getString("return"));
-                            Toast.makeText(getApplicationContext(), "yo", Toast.LENGTH_SHORT).show();
+							choice_1.setVisibility(View.VISIBLE);
+							choice_2.setVisibility(View.VISIBLE);
+							choice_3.setVisibility(View.VISIBLE);
+
+							Toast.makeText(getApplicationContext(), "yo", Toast.LENGTH_SHORT).show();
 
 
                         } catch (JSONException e) {
@@ -204,8 +216,9 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
 	// Cache les boutons de proposition de mots
 	public void hide_choice_button() {
-		choice_1.setVisibility(Button.INVISIBLE);
-		choice_2.setVisibility(Button.INVISIBLE);
-		choice_3.setVisibility(Button.INVISIBLE);
+		choice_1.setVisibility(Button.GONE);
+		choice_2.setVisibility(Button.GONE);
+		choice_3.setVisibility(Button.GONE);
+	//	findViewById(R.id.mainLayout).invalidate();
 	}
 }

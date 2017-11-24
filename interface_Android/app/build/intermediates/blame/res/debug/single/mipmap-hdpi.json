@@ -1,10 +1,18 @@
 [
     {
-        "merged": "/home/etudiant/StudioProjects/handwriting_recognition/interface_Android/app/build/intermediates/res/merged/debug/mipmap-hdpi/ic_launcher_round.png",
-        "source": "/home/etudiant/StudioProjects/handwriting_recognition/interface_Android/app/src/main/res/mipmap-hdpi/ic_launcher_round.png"
+        "merged": "/home/etudiant/AndroidStudioProjects/projetM1M2/handwriting_recognition/interface_Android/app/build/intermediates/res/merged/debug/mipmap-hdpi/ic_launcher_round.png",
+        "source": "/home/etudiant/AndroidStudioProjects/projetM1M2/handwriting_recognition/interface_Android/app/src/main/res/mipmap-hdpi/ic_launcher_round.png"
     },
     {
-        "merged": "/home/etudiant/StudioProjects/handwriting_recognition/interface_Android/app/build/intermediates/res/merged/debug/mipmap-hdpi/ic_launcher.png",
-        "source": "/home/etudiant/StudioProjects/handwriting_recognition/interface_Android/app/src/main/res/mipmap-hdpi/ic_launcher.png"
+        "merged": "/home/etudiant/AndroidStudioProjects/handwriting_recognition/interface_Android/app/build/intermediates/res/merged/debug/mipmap-hdpi/ic_launcher_round.png",
+        "source": "/home/etudiant/AndroidStudioProjects/handwriting_recognition/interface_Android/app/src/main/res/mipmap-hdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/home/etudiant/AndroidStudioProjects/projetM1M2/handwriting_recognition/interface_Android/app/build/intermediates/res/merged/debug/mipmap-hdpi/ic_launcher.png",
+        "source": "/home/etudiant/AndroidStudioProjects/projetM1M2/handwriting_recognition/interface_Android/app/src/main/res/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/etudiant/AndroidStudioProjects/handwriting_recognition/interface_Android/app/build/intermediates/res/merged/debug/mipmap-hdpi/ic_launcher.png",
+        "source": "/home/etudiant/AndroidStudioProjects/handwriting_recognition/interface_Android/app/src/main/res/mipmap-hdpi/ic_launcher.png"
     }
 ]
