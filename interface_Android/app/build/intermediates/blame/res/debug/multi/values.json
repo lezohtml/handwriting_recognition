@@ -359,14 +359,7 @@
                     "endOffset": 2114
                 },
                 "from": {
-                    "file": "/home/etudiant/AndroidStudioProjects/projetM1M2/handwriting_recognition/interface_Android/app/src/main/res/values/colors.xml",
-                    "position": {
-                        "startLine": 7,
-                        "startColumn": 4,
-                        "startOffset": 297,
-                        "endColumn": 44,
-                        "endOffset": 337
-                    }
+                    "file": "/home/etudiant/AndroidStudioProjects/projetM1M2/handwriting_recognition/interface_Android/app/src/main/res/values/colors.xml"
                 }
             },
             {
@@ -390,14 +383,7 @@
                     "endOffset": 2211
                 },
                 "from": {
-                    "file": "/home/etudiant/AndroidStudioProjects/projetM1M2/handwriting_recognition/interface_Android/app/src/main/res/values/colors.xml",
-                    "position": {
-                        "startLine": 5,
-                        "startColumn": 4,
-                        "startOffset": 199,
-                        "endColumn": 43,
-                        "endOffset": 238
-                    }
+                    "file": "/home/etudiant/AndroidStudioProjects/projetM1M2/handwriting_recognition/interface_Android/app/src/main/res/values/colors.xml"
                 }
             },
             {
@@ -2689,7 +2675,14 @@
                     "endOffset": 35060
                 },
                 "from": {
-                    "file": "/home/etudiant/AndroidStudioProjects/projetM1M2/handwriting_recognition/interface_Android/app/src/main/res/values/strings.xml"
+                    "file": "/home/etudiant/AndroidStudioProjects/projetM1M2/handwriting_recognition/interface_Android/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 1,
+                        "startOffset": 109,
+                        "endColumn": 41,
+                        "endOffset": 149
+                    }
                 }
             },
             {
@@ -2701,7 +2694,14 @@
                     "endOffset": 35105
                 },
                 "from": {
-                    "file": "/home/etudiant/AndroidStudioProjects/projetM1M2/handwriting_recognition/interface_Android/app/src/main/res/values/strings.xml"
+                    "file": "/home/etudiant/AndroidStudioProjects/projetM1M2/handwriting_recognition/interface_Android/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 1,
+                        "startOffset": 151,
+                        "endColumn": 41,
+                        "endOffset": 191
+                    }
                 }
             },
             {

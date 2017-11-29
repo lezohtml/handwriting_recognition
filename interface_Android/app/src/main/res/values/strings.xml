@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Interface saisie</string>
 	<string name="choice_1">choix 1</string>
-	<string name="choice_2">choix 1</string>
-	<string name="choice_3">choix 1</string>
+	<string name="choice_2">choix 2</string>
+	<string name="choice_3">choix 3</string>
 	<string name="name_field">test</string>
 	<string name="save_button">Sauvegarder l\'image</string>
 	<string name="reset_button">Effacer l\'image</string>
