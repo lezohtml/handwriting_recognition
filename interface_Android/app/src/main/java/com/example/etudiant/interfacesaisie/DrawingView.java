@@ -246,4 +246,10 @@ public class DrawingView extends View{
     public void showmPaint() {
         mPaint.setColor(Color.BLACK);
     }
+
+    public boolean dessinEmpty() {
+        Bitmap emptyBitmap = Bitmap.createBitmap(mBitmap.getWidth(), mBitmap.getHeight(), mBitmap.getConfig());
+       return mBitmap.sameAs(emptyBitmap);
+    }
+
 }
