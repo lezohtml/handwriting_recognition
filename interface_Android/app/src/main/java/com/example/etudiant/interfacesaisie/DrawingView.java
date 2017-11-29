@@ -238,4 +238,12 @@ public class DrawingView extends View{
 	public Bitmap getBitmap(){
         return mBitmap;
     }
+
+    public void hidemPaint() {
+        mPaint.setColor(INVISIBLE);
+    }
+
+    public void showmPaint() {
+        mPaint.setColor(Color.BLACK);
+    }
 }
