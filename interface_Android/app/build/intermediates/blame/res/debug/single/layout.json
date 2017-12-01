@@ -1,15 +1,15 @@
 [
     {
-        "merged": "/home/etudiant/AndroidStudioProjects/projetM1M2/handwriting_recognition/interface_Android/app/build/intermediates/res/merged/debug/layout/layoutmain.xml",
-        "source": "/home/etudiant/AndroidStudioProjects/projetM1M2/handwriting_recognition/interface_Android/app/src/main/res/layout/layoutmain.xml"
+        "merged": "/home/etudiant/AndroidStudioProjects/projetM1M2/handwriting_recognition/interface_Android/app/build/intermediates/res/merged/debug/layout/abc_action_bar_up_container.xml",
+        "source": "/home/etudiant/.android/build-cache/a80449fb4c85f7c7bdcf9ce92993ded3a29774c6/output/res/layout/abc_action_bar_up_container.xml"
     },
     {
         "merged": "/home/etudiant/AndroidStudioProjects/projetM1M2/handwriting_recognition/interface_Android/app/build/intermediates/res/merged/debug/layout/notification_template_lines_media.xml",
         "source": "/home/etudiant/.android/build-cache/a80449fb4c85f7c7bdcf9ce92993ded3a29774c6/output/res/layout/notification_template_lines_media.xml"
     },
     {
-        "merged": "/home/etudiant/AndroidStudioProjects/projetM1M2/handwriting_recognition/interface_Android/app/build/intermediates/res/merged/debug/layout/abc_action_bar_up_container.xml",
-        "source": "/home/etudiant/.android/build-cache/a80449fb4c85f7c7bdcf9ce92993ded3a29774c6/output/res/layout/abc_action_bar_up_container.xml"
+        "merged": "/home/etudiant/AndroidStudioProjects/projetM1M2/handwriting_recognition/interface_Android/app/build/intermediates/res/merged/debug/layout/layoutmain.xml",
+        "source": "/home/etudiant/AndroidStudioProjects/projetM1M2/handwriting_recognition/interface_Android/app/src/main/res/layout/layoutmain.xml"
     },
     {
         "merged": "/home/etudiant/AndroidStudioProjects/handwriting_recognition/interface_Android/app/build/intermediates/res/merged/debug/layout/select_dialog_item_material.xml",

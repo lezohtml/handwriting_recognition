@@ -7,6 +7,8 @@
 	<string name="save_button">Sauvegarder l\'image</string>
 	<string name="reset_button">Effacer l\'image</string>
 	<string name="cancel_button">Annuler</string>
+	<string name="textOff">Demonstration</string>
+	<string name="textOn">Expert</string>
 
 	<string name="save_success_1">"Image sauvegardé sous le nom de "</string>
 	<string name="save_success_2">".png dans "</string>

@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -33,9 +34,11 @@ public class MainActivity extends Activity implements View.OnClickListener{
 	private Button bChoice3;
 	private Button bSave;
 	private Button bReset;
+	private ToggleButton bToggle;  //En mode Démonstration par défault
 	private Button bCancelChoice;
 	private DrawingView mDrawingView;
     private TextView texteDescription;
+	private boolean mode;
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,6 +60,8 @@ public class MainActivity extends Activity implements View.OnClickListener{
 		bCancelChoice = (Button) findViewById(R.id.annulerChoix);
 		bCancelChoice.setVisibility(View.GONE);
         texteDescription = findViewById(R.id.texteDescription);
+		bToggle = findViewById(R.id.toggleButton);
+
 
 		bChoice1.setPaintFlags(bChoice1.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 		bChoice1.setVisibility(View.GONE);
@@ -64,6 +69,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 		bChoice2.setVisibility(View.GONE);
 		bChoice3.setPaintFlags(bChoice3.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 		bChoice3.setVisibility(View.GONE);
+
 	}
 
 	// Création des événements d'écoute une action sur un bouton
@@ -74,6 +80,8 @@ public class MainActivity extends Activity implements View.OnClickListener{
 		bSave.setOnClickListener(this);
 		bReset.setOnClickListener(this);
 		bCancelChoice.setOnClickListener(this);
+		bToggle.setOnClickListener(this);
+
 
 	}
 
@@ -96,7 +104,12 @@ public class MainActivity extends Activity implements View.OnClickListener{
 				this.hide_choice_button(0); //Met à jour l'application en sachant que un choix a été fait
 				break;
 
-			// appuie sur le bouton de sauvegarde
+			//Change le mode de fonctionnement de l'application
+			case R.id.toggleButton:
+				mode = !mode;
+
+
+				// appuie sur le bouton de sauvegarde
 			case R.id.save_button:
 			    if(mDrawingView.dessinEmpty()){
                     Toast.makeText(getApplicationContext(), "Veuilez ecrire votre mot", Toast.LENGTH_SHORT).show();
@@ -145,28 +158,36 @@ public class MainActivity extends Activity implements View.OnClickListener{
 						try {
 							response.getString("mot");
 							//switch(response.getInt("nbResultat")){-----------------------
-							switch(1){  //On affiche le nombre de résultat en fonction du nombre de choix que propose le serveur
-								case 0:
-									Toast.makeText(getApplicationContext(), "Le mot n'a pas été trouvé", Toast.LENGTH_SHORT).show();
-									break;
-								case 3:
-									bChoice3.setVisibility(Button.VISIBLE);
-								case 2:
-									bChoice2.setVisibility(Button.VISIBLE);
-								case 1:
-									bChoice1.setVisibility(Button.VISIBLE);
-									bSave.setVisibility(EditText.GONE);
-									mDrawingView.hidemPaint();
-									bReset.setVisibility(View.GONE);
-                                    texteDescription.setVisibility(View.GONE);
-									bCancelChoice.setVisibility(View.VISIBLE);
-                                    Toast toast= Toast.makeText(getApplicationContext(),"Ceci est il votre mot ?", Toast.LENGTH_SHORT);
-                                    toast.setGravity(Gravity.DISPLAY_CLIP_VERTICAL|Gravity.CENTER_HORIZONTAL, 1, 1);
-                                    toast.show();
-                                    bChoice1.setText(response.getString("mot"));
-									break;
-								default:
-									break;
+							if(mode) { //Mode expert
+								switch (1) {  //On affiche le nombre de résultat en fonction du nombre de choix que propose le serveur
+									case 0:
+										Toast.makeText(getApplicationContext(), "Le mot n'a pas été trouvé", Toast.LENGTH_SHORT).show();
+										break;
+									case 3:
+										bChoice3.setVisibility(Button.VISIBLE);
+									case 2:
+										bChoice2.setVisibility(Button.VISIBLE);
+									case 1:
+										bChoice1.setVisibility(Button.VISIBLE);
+										bSave.setVisibility(EditText.GONE);
+										mDrawingView.hidemPaint();
+										bReset.setVisibility(View.GONE);
+										texteDescription.setVisibility(View.GONE);
+										bCancelChoice.setVisibility(View.VISIBLE);
+										Toast toast = Toast.makeText(getApplicationContext(), "Ceci est il votre mot ?", Toast.LENGTH_SHORT);
+										toast.setGravity(Gravity.DISPLAY_CLIP_VERTICAL | Gravity.CENTER_HORIZONTAL, 1, 1);
+										toast.show();
+										bChoice1.setText(response.getString("mot"));
+										break;
+									default:
+										break;
+								}
+							}
+							else{  //Mode Démonstration
+								Toast toast = Toast.makeText(getApplicationContext(), "Ceci est il dddd mot ?", Toast.LENGTH_SHORT);
+								toast.setGravity(Gravity.DISPLAY_CLIP_VERTICAL | Gravity.CENTER_HORIZONTAL, 1, 1);
+								toast.show();
+								texteDescription.setText(response.getString("mot")+ "avec xxx de chance");
 							}
 						} catch (JSONException e) {
 							e.printStackTrace();
