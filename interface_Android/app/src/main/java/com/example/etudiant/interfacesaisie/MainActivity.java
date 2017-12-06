@@ -107,7 +107,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 			//Change le mode de fonctionnement de l'application
 			case R.id.toggleButton:
 				mode = !mode;
-
+			break;
 
 				// appuie sur le bouton de sauvegarde
 			case R.id.save_button:
@@ -126,6 +126,9 @@ public class MainActivity extends Activity implements View.OnClickListener{
 			// appuie sur le bouton de remise à zéro
 			case R.id.reset_button:
 				mDrawingView.reset();
+				if(!mode){
+					texteDescription.setText("Veuillez écrire votre mot.");
+				}
 				break;
 			case R.id.annulerChoix: //Met à jour l'application en sachant qu'il y a eu une annulation
 				this.hide_choice_button(1);
@@ -184,10 +187,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 								}
 							}
 							else{  //Mode Démonstration
-								Toast toast = Toast.makeText(getApplicationContext(), "Ceci est il dddd mot ?", Toast.LENGTH_SHORT);
-								toast.setGravity(Gravity.DISPLAY_CLIP_VERTICAL | Gravity.CENTER_HORIZONTAL, 1, 1);
-								toast.show();
-								texteDescription.setText(response.getString("mot")+ "avec xxx de chance");
+								texteDescription.setText(response.getString("mot")+ " avec xxx de chance");
 							}
 						} catch (JSONException e) {
 							e.printStackTrace();
