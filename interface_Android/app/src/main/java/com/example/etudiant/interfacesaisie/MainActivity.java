@@ -5,90 +5,84 @@ import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.Paint;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.util.Base64;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 
-/**
- * Created by etudiant on 04/10/17.
- */
 
 public class MainActivity extends Activity implements View.OnClickListener{
-	//private String path=Environment.getExternalStorageDirectory().toString()+File.separator.toString()+"interface_android";
-	//private File folder;
-
-	private EditText mEdit;
-	private Button choice_1;
-	private Button choice_2;
-	private Button choice_3;
-	private Button mSaveButton;
-	private Button ResetButton;
-
+	private Button bChoice1;
+	private Button bChoice2;
+	private Button bChoice3;
+	private Button bSave;
+	private Button bReset;
+	private ToggleButton bToggle;  //En mode Démonstration par défault
+	private Button bCancelChoice;
 	private DrawingView mDrawingView;
+    private TextView texteDescription;
+	private boolean mode;
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layoutmain);
-
 		initializeUI();
 		setListeners();
-
-		//folder = new File(path);
-
-
-		ActivityCompat.requestPermissions(this,new String[]{/*Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE,*/Manifest.permission.INTERNET},101);
+		ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.INTERNET},101);
 	}
 
 	// Création des objets représentant la zone de dessin, la zone de texte et les boutons de sauvegarde et de remise à zéro
 	private void initializeUI() {
 		mDrawingView = (DrawingView) findViewById(R.id.scratch_pad);
-		choice_1 = (Button) findViewById(R.id.choice_1);
-		choice_2 = (Button) findViewById(R.id.choice_2);
-		choice_3 = (Button) findViewById(R.id.choice_3);
-		mEdit = (EditText)findViewById(R.id.editText);
-		mSaveButton = (Button) findViewById(R.id.save_button);
-		ResetButton = (Button) findViewById(R.id.reset_button);
+		bChoice1 = (Button) findViewById(R.id.choice_1);
+		bChoice2 = (Button) findViewById(R.id.choice_2);
+		bChoice3 = (Button) findViewById(R.id.choice_3);
+		bSave = (Button) findViewById(R.id.save_button);
+		bReset = (Button) findViewById(R.id.reset_button);
+		bCancelChoice = (Button) findViewById(R.id.annulerChoix);
+		bCancelChoice.setVisibility(View.GONE);
+        texteDescription = findViewById(R.id.texteDescription);
+		bToggle = findViewById(R.id.toggleButton);
 
-		choice_1.setPaintFlags(choice_1.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-		choice_1.setVisibility(View.GONE);
-		choice_2.setPaintFlags(choice_2.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-		choice_2.setVisibility(View.GONE);
-		choice_3.setPaintFlags(choice_3.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-		choice_3.setVisibility(View.GONE);
 
+		bChoice1.setPaintFlags(bChoice1.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+		bChoice1.setVisibility(View.GONE);
+		bChoice2.setPaintFlags(bChoice2.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+		bChoice2.setVisibility(View.GONE);
+		bChoice3.setPaintFlags(bChoice3.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+		bChoice3.setVisibility(View.GONE);
 
 	}
 
 	// Création des événements d'écoute une action sur un bouton
 	private void setListeners() {
-		choice_1.setOnClickListener(this);
-		choice_2.setOnClickListener(this);
-		choice_3.setOnClickListener(this);
-		mSaveButton.setOnClickListener(this);
-		ResetButton.setOnClickListener(this);
+		bChoice1.setOnClickListener(this);
+		bChoice2.setOnClickListener(this);
+		bChoice3.setOnClickListener(this);
+		bSave.setOnClickListener(this);
+		bReset.setOnClickListener(this);
+		bCancelChoice.setOnClickListener(this);
+		bToggle.setOnClickListener(this);
+
+
 	}
 
 	// Que faire si on appuie sur un bouton
@@ -97,62 +91,53 @@ public class MainActivity extends Activity implements View.OnClickListener{
 		switch (view.getId()) {
 			// appuie sur le bouton de proposition 1
 			case R.id.choice_1:
-				this.hide_choice_button();
+				this.hide_choice_button(0);  //Met à jour l'application en sachant que un choix a été fait
 				break;
 
 			// appuie sur le bouton de proposition 2
 			case R.id.choice_2:
-				this.hide_choice_button();
+				this.hide_choice_button(0); //Met à jour l'application en sachant que un choix a été fait
 				break;
 
 			// appuie sur le bouton de proposition 3
 			case R.id.choice_3:
-				this.hide_choice_button();
+				this.hide_choice_button(0); //Met à jour l'application en sachant que un choix a été fait
 				break;
 
-			// appuie sur le bouton de sauvegarde
-			case R.id.save_button:
-				// si la zone de texte est vide
-				if(mEdit.getText().toString().matches("")) {
-					// alors message d'erreur et focus sur la zone de texte
-					Toast.makeText(this, R.string.name_field_empty, Toast.LENGTH_SHORT).show();
-					mEdit.requestFocus();
-				} else {
-					//boolean success = true;
-					//if (!folder.exists()) {
-					//success = folder.mkdirs();
-					//}
-					//if (success) {
-					//try {
-					//mDrawingView.saveImage(path, mEdit.getText().toString(), Bitmap.CompressFormat.PNG, 100);
-					//Toast.makeText(this, this.getResources().getString(R.string.save_success_1) + mEdit.getText().toString() + this.getResources().getString(R.string.save_success_2) + path, Toast.LENGTH_LONG).show();
-					//} catch (Exception e) {
-					//Toast.makeText(this, this.getResources().getString(R.string.error_file) + mEdit.getText().toString() + this.getResources().getString(R.string.save_success_2)+ path + " !", Toast.LENGTH_LONG).show();
-					//}
-					//} else {
-					//Toast.makeText(this, this.getResources().getString(R.string.error_folder) + path + " !", Toast.LENGTH_LONG).show();
-					//}
+			//Change le mode de fonctionnement de l'application
+			case R.id.toggleButton:
+				mode = !mode;
+			break;
 
-					try {
-						envoiImage(view);
-					} catch (JSONException e) {
-						e.printStackTrace();
-					}
-				}
+				// appuie sur le bouton de sauvegarde
+			case R.id.save_button:
+			    if(mDrawingView.dessinEmpty()){
+                    Toast.makeText(getApplicationContext(), "Veuilez ecrire votre mot", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    try {
+                        envoiImage(view);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
 				break;
 
 			// appuie sur le bouton de remise à zéro
 			case R.id.reset_button:
-				reset();
+				mDrawingView.reset();
+				if(!mode){
+					texteDescription.setText("Veuillez écrire votre mot.");
+				}
 				break;
+			case R.id.annulerChoix: //Met à jour l'application en sachant qu'il y a eu une annulation
+				this.hide_choice_button(1);
+
 		}
 	}
 
 	//Envoi de l'image vers le serveur : Transformation de la DrawView en Bitmap puis en String pour l'envoi avec un Json
 	public void envoiImage(View view) throws JSONException {
-		final EditText mTxtDisplay = (EditText) findViewById(R.id.editText);
-		String url = "http://tf.boblecodeur.fr:8000/postimg";
-		JSONObject myJson = new JSONObject();
 
 		//Creation d'un String à partir du bitmap pour le preparer à l'envoi
 		Bitmap bitmapEnvoi = mDrawingView.getBitmap();
@@ -163,84 +148,86 @@ public class MainActivity extends Activity implements View.OnClickListener{
 		byte[] b = byteArrayBitmapStream.toByteArray();
 		encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
 
-
+		//Préparation du JSON avec l'image
+		JSONObject myJson = new JSONObject();
 		myJson.put("img", encodedImage);
-		myJson.put("label", mTxtDisplay.getText().toString());
+		myJson.put("label","label");
 
-		JsonObjectRequest jsObjRequest = new JsonObjectRequest
-				(Request.Method.POST, url, myJson, new Response.Listener<JSONObject>() {
-
+		//Preparation de la requete du JSON à l'adresse 'url'
+		String url = "http://tf.boblecodeur.fr:8000/postimg";
+		JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.POST, url, myJson, new Response.Listener<JSONObject>() {
 					@Override
 					public void onResponse(JSONObject response) {
 						try {
-							response.getString("return");
-							//switch(response.getInt("nbResultat")){
-							switch(3){
-								case 0:
-									Toast.makeText(getApplicationContext(), "Le mot n'a pas été trouvé", Toast.LENGTH_SHORT).show();
-									break;
-								case 3:
-									choice_3.setVisibility(Button.VISIBLE);
-								case 2:
-									choice_2.setVisibility(Button.VISIBLE);
-								case 1:
-									choice_1.setVisibility(Button.VISIBLE);
-									Button saveButton = (Button) findViewById(R.id.save_button);
-									saveButton.setVisibility(EditText.GONE);
-									Button resetButton = (Button) findViewById(R.id.reset_button);
-									mDrawingView.hidemPaint();
-									mEdit.setVisibility(EditText.GONE);
-									resetButton.setText("Annuler le choix");
-									break;
-								default: break;
-
+							response.getString("mot");
+							//switch(response.getInt("nbResultat")){-----------------------
+							if(mode) { //Mode expert
+								switch (1) {  //On affiche le nombre de résultat en fonction du nombre de choix que propose le serveur
+									case 0:
+										Toast.makeText(getApplicationContext(), "Le mot n'a pas été trouvé", Toast.LENGTH_SHORT).show();
+										break;
+									case 3:
+										bChoice3.setVisibility(Button.VISIBLE);
+									case 2:
+										bChoice2.setVisibility(Button.VISIBLE);
+									case 1:
+										bChoice1.setVisibility(Button.VISIBLE);
+										bSave.setVisibility(EditText.GONE);
+										mDrawingView.hidemPaint();
+										bReset.setVisibility(View.GONE);
+										texteDescription.setVisibility(View.GONE);
+										bCancelChoice.setVisibility(View.VISIBLE);
+										Toast toast = Toast.makeText(getApplicationContext(), "Ceci est il votre mot ?", Toast.LENGTH_SHORT);
+										toast.setGravity(Gravity.DISPLAY_CLIP_VERTICAL | Gravity.CENTER_HORIZONTAL, 1, 1);
+										toast.show();
+										bChoice1.setText(response.getString("mot"));
+										break;
+									default:
+										break;
+								}
+							}
+							else{  //Mode Démonstration
+								texteDescription.setText(response.getString("mot")+ " avec xxx de chance");
 							}
 						} catch (JSONException e) {
 							e.printStackTrace();
-							mTxtDisplay.setText("Error: " + e.toString());
+							Toast.makeText(getApplicationContext(), "Erreur de connection avec le serveur", Toast.LENGTH_SHORT).show();
 
 						}
 					}
 				}, new Response.ErrorListener() {
-
 					@Override
 					public void onErrorResponse(VolleyError error) {
 						error.printStackTrace();
-						mTxtDisplay.setText("Error: " + error.toString());
 						Toast.makeText(getApplicationContext(), "Erreur dans l'envoi", Toast.LENGTH_SHORT).show();
-
-
 					}
 				});
 
-		// Access the RequestQueue through your singleton class.
+		//Envoi de la requete préparée à l'étape précédente
 		MySingleton.getInstance(this).addToRequestQueue(jsObjRequest);
 	}
 
-	// Remplace le Canva, son Bitmap et vide la zone de texte
-	public void reset() {
-		mDrawingView.reset();
-		hide_choice_button();
-		mEdit.setText("");
+
+	// Lorsque le l'utilisateur clique sur l'envoi: Cache les boutons de proposition de mots et change leurs labels
+	public void hide_choice_button(int button) {
+		bChoice1.setVisibility(Button.GONE);
+		bChoice2.setVisibility(Button.GONE);
+		bChoice3.setVisibility(Button.GONE);
+		bCancelChoice.setVisibility(View.GONE);
+		bSave.setVisibility(EditText.VISIBLE);
+		bReset.setVisibility(EditText.VISIBLE);
+        texteDescription.setVisibility(View.VISIBLE);
+        mDrawingView.showmPaint();
+
+		//Si l'utilisateur annule on ne lui supprime pas son image
+		if(button==0) {  //Si l'utilisateur à fait un choix dans ce qui sont proposé ; on supprime le dessin
+            resetAppuiBouton();
+		}
+
 	}
 
-	// Lorsque le l'utilisateur clique sur l'envoi: Cache les boutons de proposition de mots et change les labels
-	public void hide_choice_button() {
-		choice_1.setVisibility(Button.GONE);
-		choice_2.setVisibility(Button.GONE);
-		choice_3.setVisibility(Button.GONE);
-		mEdit.setVisibility(EditText.VISIBLE);
-		Button saveButton = (Button) findViewById(R.id.save_button);
-		saveButton.setVisibility(EditText.VISIBLE);
-		Button myButton = (Button) findViewById(R.id.reset_button);
-		myButton.setText("Effacer le mot");
-		mDrawingView.showmPaint();
-		mDrawingView.reset();
-		mEdit.setText("");
-		//reset();
-		//	findViewById(R.id.mainLayout).invalidate();
-	}
 
-	// Inverse hide_choice : Affiche tout les boutons pour le choix et change les labels pour correspondra à létat de l'application
-
+	public void resetAppuiBouton(){
+        mDrawingView.reset();
+    }
 }

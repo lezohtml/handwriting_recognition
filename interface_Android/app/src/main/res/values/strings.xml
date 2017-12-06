@@ -3,9 +3,12 @@
 	<string name="choice_1">choix 1</string>
 	<string name="choice_2">choix 2</string>
 	<string name="choice_3">choix 3</string>
-	<string name="name_field">test</string>
-	<string name="save_button">Sauvegarder l\'image</string>
-	<string name="reset_button">Effacer l\'image</string>
+	<string name="texteDesciption">Veuillez ecrire votre mot</string>
+	<string name="save_button">Valider mot</string>
+	<string name="reset_button">Effacer mot</string>
+	<string name="cancel_button">Annuler</string>
+	<string name="textOff">Demonstration</string>
+	<string name="textOn">Expert</string>
 
 	<string name="save_success_1">"Image sauvegardé sous le nom de "</string>
 	<string name="save_success_2">".png dans "</string>

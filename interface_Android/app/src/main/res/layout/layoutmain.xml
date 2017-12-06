@@ -8,6 +8,7 @@
 	>
 
 	<GridLayout
+		android:id="@+id/gridDrawing"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:layout_weight="1"
@@ -23,12 +24,33 @@
 	</GridLayout>
 
 	<LinearLayout
-			android:id="@+id/choice_bar"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:orientation="horizontal"
-		    android:animateLayoutChanges="true">
+		android:id="@+id/choice_bar"
+		style="@style/Widget.AppCompat.Button.Borderless"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:animateLayoutChanges="true"
+		android:background="@drawable/button_border_blue"
+		android:orientation="horizontal"
+		android:textAlignment="center">
 
+
+		<ToggleButton
+			android:id="@+id/toggleButton"
+			style="@style/Widget.AppCompat.Button.Borderless"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:layout_weight="0.2"
+			android:text="Demonstration"
+			android:textOff="@string/textOff"
+			android:textOn="@string/textOn" />
+
+		<TextView
+			android:id="@+id/texteDescription"
+			style="@style/Widget.AppCompat.Button.Borderless"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:text="@string/texteDesciption" />
 
 		<Button
 			android:id="@+id/choice_1"
@@ -38,7 +60,7 @@
 			android:layout_marginLeft="2dp"
 			android:layout_marginRight="1dp"
 			android:layout_weight="1"
-			android:background="@drawable/button_border"
+			android:background="@drawable/button_choice"
 			android:text="@string/choice_1"
 			android:textAlignment="center"
 			android:textStyle="bold" />
@@ -51,7 +73,7 @@
 			android:layout_marginLeft="1dp"
 			android:layout_marginRight="1dp"
 			android:layout_weight="1"
-			android:background="@drawable/button_border"
+			android:background="@drawable/button_choice"
 			android:text="@string/choice_2"
 			android:textStyle="bold" />
 
@@ -63,26 +85,13 @@
 			android:layout_marginLeft="1dp"
 			android:layout_marginRight="2dp"
 			android:layout_weight="1"
-			android:background="@drawable/button_border"
+			android:background="@drawable/button_choice"
 			android:text="@string/choice_3"
 			android:textAlignment="center"
 			android:textStyle="bold" />
-		</LinearLayout>
+	</LinearLayout>
 
-	<EditText
-		android:id="@+id/editText"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:ems="10"
-		android:inputType="textPersonName"
-		android:maxLines="1"
-		android:text="@string/name_field"
-		android:textAlignment="center"
-		android:background="@color/colorEdit"
-		tools:ignore="LabelFor"
-		/>
-
-		<LinearLayout
+	<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:orientation="horizontal">
@@ -93,17 +102,26 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_weight="1"
-				android:text="@string/reset_button"
-				android:background="@color/colorButtonBottom"/>
+				android:background="@drawable/button_main"
+				android:text="@string/reset_button" />
 
 			<Button
 				android:id="@+id/save_button"
 				style="@style/Widget.AppCompat.Button"
 				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
+				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:text="@string/save_button"
-				android:background="@color/colorButtonBottom"/>
+				android:background="@drawable/button_main"
+				android:text="@string/save_button" />
+
+			<Button
+				android:id="@+id/annulerChoix"
+				style="@style/Widget.AppCompat.Button"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:layout_weight="1"
+				android:background="@drawable/button_main"
+				android:text="@string/cancel_button" />
 		</LinearLayout>
 
 
