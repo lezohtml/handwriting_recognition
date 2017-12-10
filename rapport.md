@@ -104,7 +104,7 @@ L'application est composée d'une seule activité divisé en 2 zones principales
 Dès le demarrage de l'application, la vue principale s'affiche comportant une zone de dessin, un texte indiquant ce que l'utilisateur doit faire ainsi que 2 boutons lui permettant d'effacer son dessin ou alors de l'envoyer au serveur.
  1. L'utilisateur à le choix, après avoir écrit son mot, d'effacer ce qu'il vient de faire ou alors de l'envoyer au serveur.
  2. S'il décide de l'envoyer, l'image est encodé en base64 puis insérer dans un objet JSON ayant pour attribut "img". Cet objet est envoyé au serveur via l'url "http://tf.boblecodeur.fr:8000/postimg". Le serveur répond et la zone de du bas affiche alors le résultat avec la probabilité de celui-ci.
-   - En mode Expert, lors de la réponse du serveur, l'interface du bas change pour afficher les 3 meilleurs résultat trouvé et l'utilisateur peut alors choisir le mot qu'il a écrit. Ceci pourrait être éventuellement utile pour un renforcement positif du réseau de neurone.
+    - En mode Expert, lors de la réponse du serveur, l'interface du bas change pour afficher les 3 meilleurs résultat trouvé et l'utilisateur peut alors choisir le mot qu'il a écrit. Ceci pourrait être éventuellement utile pour un renforcement positif du réseau de neurone.
   3. Après un envoi, la zone de dessin est effacé et laisse la possiblité à l'utilisateur d'écrire un nouveau mot.
 
 #### Évolution
