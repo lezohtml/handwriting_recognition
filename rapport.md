@@ -88,8 +88,19 @@ La phase d'apprentissage est une des plus grosse partie de notre projet. Effecti
 Les applications clientes permettent le lien entre l'utilisateur et le serveur de reconnaissance. Elle affiche une zone de dessin qui permet à l'utilisateur d'écrire le mot. Elle envoie ensuite ce dessin sous forme d'image et attend la réponse du serveur.
 
 ### Android :
-L'application Android est préconisée pour l'utilisation de notre programme. Il permet d'écrire plus facilement dans la zone de dessin avec un stylet.
+L'applcation possède 2 mode différents; un mode "Expert" et un mode "Démonstration". Pour toute les explications à suivre le mode Démonstration sera celui décrit sauf indication contraire.
+#### Interface
+L'application est composée d'une seule activité divisé en 2 zones principales:
+ - Une zone de dessin, en haut, prenant 70% de l'écran.
+ - Une zone d'interaction prenant le reste l'espace, en bas. Elle est composée de boutton et labels pour permettre à l'utilisateur de faire des choix ainsi que de l'informé des changement d'état suite à ces actions et les retour du serveur.
+#### Fonctionnement
+Dès le demarrage de l'application nous nous retrouvons la vue principale de l'application; L'utilisateur est présenté avec une zone de dessin, un texte lui indiquant ce qu'il doit faire ainsi que 2 boutons lui permettant d'éffacer son dessin ou alors de l'envoyer au serveur.
+ - L'utilisateur à le choix, après avoir écrit son mot, de soit d'effacer ce qu'il vient de faire ou alors d'envoyer son mot au serveur.
+ -- Si celui-ci décide de l'envoyer le serveur répond et la zone de du bas affiche alors le resultat avec la probabilité de celui-ci.
+   - En mode Expert, lors de la réponse du serveur, l'interface du bas change pour afficher les 3 meilleurs résultat trouvé et l'utilisateur peut alors choisir le mot qu'il a écrit. Ceci pourrait être éventuellement utile pour un renforcement positif du réseau de neurone.
+  - La zone de dessin est aussi effacé et laisse la possiblité à l'utilisateur d'écrire un nouveau mot.
 
+#### Évolution
 ### PC :
 
 <!-- ORGANISATION -->
