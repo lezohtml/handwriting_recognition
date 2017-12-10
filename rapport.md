@@ -63,11 +63,18 @@ L'utilisateur écrit sur une tablette, un smartphone ou un ordinateur des mots. 
 
 ### Réseau de neurones :
 ETRE BREF ! (on peut copier WIKI mais citer les sources)
- un réseau de neurones est inspiré de la biologie humaine et des neurones du cerveau. Il est utilisé en statistique, en recherche, ...
+Un réseau de neurones est inspiré de la biologie humaine et des neurones du cerveau. Il est utilisé dans de nombreux domaine notamment en statistique ou encore en recherche. Il est le coeur des méthodes d'apprentissage profont (deeplearning en anglais). Ces méthode ont pour but de permettre la reconnaissance de signaux visuel ou sonore à un système informatisé, en l'occurence pour notre projet des images de mots.
 
+Pour en savoir plus sur les réseaux de neurones et l'apprentissage profond:
+ - [Article de Wikipedia sur l'apprentissage profond](https://fr.wikipedia.org/wiki/Apprentissage_profond)
+ - [Article de Wikipedia sur les réseau de neurones](https://fr.wikipedia.org/wiki/R%C3%A9seau_de_neurones_artificiels)
 
 ### TensorFlow :
-TensorFlow est un système d'apprentissage automatique développé en Python par Google sous licence Apache. Il supporte le calcul sur CPU et GPU et est disponible pour différentes plateformes et dispose d'API dans plusieurs langages de programmation (Python, C++, Java, Go, ...). C'est le moteur le plus puissant du marché.
+TensorFlow est un système d'apprentissage automatique développé en Python par Google sous licence Apache. Il supporte le calcul sur CPU et GPU. Il est disponible pour différentes plateformes et dispose d'API dans plusieurs langages de programmation (Python, C++, Java, Go, ...). Son principe d'apprentissage est de recevoir un ensemble d'images auquelles son rattaché des labels. Pour chaque label, un neurone est crée et se voit attribuer toutes les images correspondant à ce label.
+
+Le premier apprentissage n'est jamais suffisant pout que le réseau de neurones reconnaîssent correctement une image. En effet, lorsqu'il sera demandé à TensorFlow de reconnaître une image, ses premières réponse seront souvent erronées. C'est pourquoi plusieurs apprentissages sont souvent nécessaire. Au-fur et à mesure de ceux-ci, TensorFlow recconnaître avec plus de facile de nouvelles images.
+
+Toutefois il est important de faire attention au sur-apprentissage ! Si trop d'apprentissage sont fait, un réseau de neurones va se spécialiser sur les exemples données avec une trop grande précision et sera incapable de reconnaître des images n'ayant pourtant que quelques petites différence.
 
 <!-- PROTOCOLE -->
 ## Protocole :
@@ -92,13 +99,13 @@ L'applcation possède 2 mode différents; un mode "Expert" et un mode "Démonstr
 #### Interface
 L'application est composée d'une seule activité divisé en 2 zones principales:
  - Une zone de dessin, en haut, prenant 70% de l'écran.
- - Une zone d'interaction prenant le reste l'espace, en bas. Elle est composée de boutton et labels pour permettre à l'utilisateur de faire des choix ainsi que de l'informé des changement d'état suite à ces actions et les retour du serveur.
+ - Une zone d'interaction prenant le reste l'espace, en bas. Elle est composée de boutton et labels pour permettre à l'utilisateur de faire des choix, ainsi que de l'informer des changement d'état suite à ses actions et les retour du serveur.
 #### Fonctionnement
-Dès le demarrage de l'application nous nous retrouvons la vue principale de l'application; L'utilisateur est présenté avec une zone de dessin, un texte lui indiquant ce qu'il doit faire ainsi que 2 boutons lui permettant d'éffacer son dessin ou alors de l'envoyer au serveur.
- - L'utilisateur à le choix, après avoir écrit son mot, de soit d'effacer ce qu'il vient de faire ou alors d'envoyer son mot au serveur.
- -- Si celui-ci décide de l'envoyer le serveur répond et la zone de du bas affiche alors le resultat avec la probabilité de celui-ci.
+Dès le demarrage de l'application, la vue principale s'affiche comportant une zone de dessin, un texte indiquant ce que l'utilisateur doit faire ainsi que 2 boutons lui permettant d'effacer son dessin ou alors de l'envoyer au serveur.
+ 1. L'utilisateur à le choix, après avoir écrit son mot, d'effacer ce qu'il vient de faire ou alors de l'envoyer au serveur.
+ 2. S'il décide de l'envoyer, l'image est encodé en base64 puis insérer dans un objet JSON ayant pour attribut "img". Cet objet est envoyé au serveur via l'url "http://tf.boblecodeur.fr:8000/postimg". Le serveur répond et la zone de du bas affiche alors le résultat avec la probabilité de celui-ci.
    - En mode Expert, lors de la réponse du serveur, l'interface du bas change pour afficher les 3 meilleurs résultat trouvé et l'utilisateur peut alors choisir le mot qu'il a écrit. Ceci pourrait être éventuellement utile pour un renforcement positif du réseau de neurone.
-  - La zone de dessin est aussi effacé et laisse la possiblité à l'utilisateur d'écrire un nouveau mot.
+  3. Après un envoi, la zone de dessin est effacé et laisse la possiblité à l'utilisateur d'écrire un nouveau mot.
 
 #### Évolution
 ### PC :
@@ -108,14 +115,23 @@ Dès le demarrage de l'application nous nous retrouvons la vue principale de l'a
 
 ## Répartition des tâches :
 Brice HARISMENDY | Norman O'SHEA | Valentin FARIA OLIVEIRA | Léonard PRADIER
-- |:-: | :-: | -:  
+:-: | :-: | :-: | :-:
 Interface PC | Application Android | Application Android | Interface PC
 Mise en place serveur TensorFlow | Analyse TensorFlow  | Apprentissage modèle | API REST
 Interaction avec le serveur TensorFlow | | Modèle / Resolveur | Interaction API REST / interface TensorFlow
 Apprentissage modèle| | |
 
 ## Outils
-github
+ - [Android Studio](https://developer.android.com/studio/index.html) pour le développement de l'application Android
+ - [GitHub](http://github.com) pour l'hébergement du projet
+ - [Slack](www.slack.com) pour la communication au sein de l'équipe
+ - [TensorFlow](https://www.tensorflow.org/) pour le moteur de deeplearning
+
 
 <!-- CONCLUSION -->
 ## Conclusion :
+Ce projet à été très enrichissant pour nous qui n'avions que de vague connaissances théoriques concernant le l'apprentissage profond. Il nous a permis d'appronfondir ces connaissances et de nous faire une idée sur sa mise en pratique, notamment avec TensorFlow.
+
+Cependant, notre modèle d'apprentissge pour TensorFlow reste imparfait et nous ne somme pas encore en mesure de reconnaitre des mots.
+
+Ceci pourra être le sujet d'une évolution de ce projet.

@@ -112,7 +112,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 				// appuie sur le bouton de sauvegarde
 			case R.id.save_button:
 			    if(mDrawingView.dessinEmpty()){
-                    Toast.makeText(getApplicationContext(), "Veuilez ecrire votre mot", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.texteDesciption, Toast.LENGTH_SHORT).show();
                 }
                 else {
                     try {
@@ -127,7 +127,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 			case R.id.reset_button:
 				mDrawingView.reset();
 				if(!mode){
-					texteDescription.setText("Veuillez écrire votre mot.");
+					texteDescription.setText(R.string.texteDesciption);
 				}
 				break;
 			case R.id.annulerChoix: //Met à jour l'application en sachant qu'il y a eu une annulation
@@ -156,52 +156,52 @@ public class MainActivity extends Activity implements View.OnClickListener{
 		//Preparation de la requete du JSON à l'adresse 'url'
 		String url = "http://tf.boblecodeur.fr:8000/postimg";
 		JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.POST, url, myJson, new Response.Listener<JSONObject>() {
-					@Override
-					public void onResponse(JSONObject response) {
-						try {
-							response.getString("mot");
-							//switch(response.getInt("nbResultat")){-----------------------
-							if(mode) { //Mode expert
-								switch (1) {  //On affiche le nombre de résultat en fonction du nombre de choix que propose le serveur
-									case 0:
-										Toast.makeText(getApplicationContext(), "Le mot n'a pas été trouvé", Toast.LENGTH_SHORT).show();
-										break;
-									case 3:
-										bChoice3.setVisibility(Button.VISIBLE);
-									case 2:
-										bChoice2.setVisibility(Button.VISIBLE);
-									case 1:
-										bChoice1.setVisibility(Button.VISIBLE);
-										bSave.setVisibility(EditText.GONE);
-										mDrawingView.hidemPaint();
-										bReset.setVisibility(View.GONE);
-										texteDescription.setVisibility(View.GONE);
-										bCancelChoice.setVisibility(View.VISIBLE);
-										Toast toast = Toast.makeText(getApplicationContext(), "Ceci est il votre mot ?", Toast.LENGTH_SHORT);
-										toast.setGravity(Gravity.DISPLAY_CLIP_VERTICAL | Gravity.CENTER_HORIZONTAL, 1, 1);
-										toast.show();
-										bChoice1.setText(response.getString("mot"));
-										break;
-									default:
-										break;
-								}
-							}
-							else{  //Mode Démonstration
-								texteDescription.setText(response.getString("mot")+ " avec xxx de chance");
-							}
-						} catch (JSONException e) {
-							e.printStackTrace();
-							Toast.makeText(getApplicationContext(), "Erreur de connection avec le serveur", Toast.LENGTH_SHORT).show();
-
+			@Override
+			public void onResponse(JSONObject response) {
+				try {
+					response.getString("mot");
+					//switch(response.getInt("nbResultat")){-----------------------
+					if(mode) { //Mode expert
+						switch (1) {  //On affiche le nombre de résultat en fonction du nombre de choix que propose le serveur
+							case 0:
+								Toast.makeText(getApplicationContext(), R.string.error_word, Toast.LENGTH_SHORT).show();
+								break;
+							case 3:
+								bChoice3.setVisibility(Button.VISIBLE);
+							case 2:
+								bChoice2.setVisibility(Button.VISIBLE);
+							case 1:
+								bChoice1.setVisibility(Button.VISIBLE);
+								bSave.setVisibility(EditText.GONE);
+								mDrawingView.hidemPaint();
+								bReset.setVisibility(View.GONE);
+								texteDescription.setVisibility(View.GONE);
+								bCancelChoice.setVisibility(View.VISIBLE);
+								Toast toast = Toast.makeText(getApplicationContext(), R.string.ask, Toast.LENGTH_SHORT);
+								toast.setGravity(Gravity.DISPLAY_CLIP_VERTICAL | Gravity.CENTER_HORIZONTAL, 1, 1);
+								toast.show();
+								bChoice1.setText(response.getString("mot"));
+								break;
+							default:
+								break;
 						}
 					}
-				}, new Response.ErrorListener() {
-					@Override
-					public void onErrorResponse(VolleyError error) {
-						error.printStackTrace();
-						Toast.makeText(getApplicationContext(), "Erreur dans l'envoi", Toast.LENGTH_SHORT).show();
+					else {  //Mode Démonstration
+						texteDescription.setText(response.getString("mot")+R.string.with+"xxx"+R.string.percent);
 					}
-				});
+				} catch (JSONException e) {
+					e.printStackTrace();
+					Toast.makeText(getApplicationContext(), R.string.error_server, Toast.LENGTH_SHORT).show();
+
+				}
+			}
+		}, new Response.ErrorListener() {
+			@Override
+			public void onErrorResponse(VolleyError error) {
+				error.printStackTrace();
+				Toast.makeText(getApplicationContext(), R.string.error_sending, Toast.LENGTH_SHORT).show();
+			}
+		});
 
 		//Envoi de la requete préparée à l'étape précédente
 		MySingleton.getInstance(this).addToRequestQueue(jsObjRequest);
@@ -219,13 +219,11 @@ public class MainActivity extends Activity implements View.OnClickListener{
         texteDescription.setVisibility(View.VISIBLE);
         mDrawingView.showmPaint();
 
-		//Si l'utilisateur annule on ne lui supprime pas son image
-		if(button==0) {  //Si l'utilisateur à fait un choix dans ce qui sont proposé ; on supprime le dessin
+		// Si l'utilisateur annule on ne lui supprime pas son image
+		if(button==0) { // Si l'utilisateur à fait un choix parmi les mots proposé, on supprime le dessin
             resetAppuiBouton();
 		}
-
 	}
-
 
 	public void resetAppuiBouton(){
         mDrawingView.reset();
