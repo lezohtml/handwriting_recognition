@@ -127,6 +127,10 @@ Apprentissage modèle| | |
  - [Slack](www.slack.com) pour la communication au sein de l'équipe
  - [TensorFlow](https://www.tensorflow.org/) pour le moteur de deeplearning
 
+## Problèmes rencontrés
+Le principal problème rencontré à été de réussir à utiliser TensorFlow. En effet, sa documentation technique est avant tout pensé pour des personnes ayant l'habitude de ce genre d'outils. Malgré la présence d'un exemple pour reconnaitre des chiffres, notre méconnaisance des réseau de neurones et des principes d'utilisations de ceux-ci ont été un frein à la compréhension et l'utilisation de cet outil.
+
+Ce problème à ensuite été le prémisse de ceux qui ont suivi l'apprentissage et la reconnaissance d'image, comme un modèle d'apprentissage inefficace ou du sur-apprentissage.
 
 <!-- CONCLUSION -->
 ## Conclusion :
