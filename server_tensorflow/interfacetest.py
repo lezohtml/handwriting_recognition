@@ -140,7 +140,7 @@ class ImageGenerator:
 
 
 
-            os.system("python3 eval_model.py "+file)
+            os.system("python3 eval_model3.py "+file)
 
 
 

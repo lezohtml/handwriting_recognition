@@ -10,7 +10,9 @@ from keras.layers import Convolution2D, MaxPooling2D
 from keras.utils import np_utils
 from keras.datasets import mnist
 from keras.models import model_from_json
+import keras
 import h5py
+
 # 4. Load pre-shuffled MNIST data into train and test sets
 (X_train, y_train), (X_test, y_test) = mnist.load_data()
 
@@ -54,10 +56,10 @@ model.fit(X_train, Y_train,
 score = model.evaluate(X_test, Y_test, verbose=0)
 
 # 11 serialize model to JSON
-model_json = model.to_json()
-with open("model.json", "w") as json_file:
-    json_file.write(model_json)
+#model_json = model.to_json()
+#with open("model.json", "w") as json_file:
+#    json_file.write(model_json)
 # serialize weights to HDF5
-model.save_weights("model.h5")
+model.save("model.h5")
 print("Saved model to disk")
 keras.callbacks.TensorBoard(log_dir='./logs', histogram_freq=0, batch_size=32, write_graph=True, write_grads=False, write_images=False, embeddings_freq=0, embeddings_layer_names=None, embeddings_metadata=None)
